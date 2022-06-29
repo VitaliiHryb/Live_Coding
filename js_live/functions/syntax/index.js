@@ -101,10 +101,17 @@ function getSumFromTo(from, to) {
   sum += i;
  }
 
+
  return sum;
 }
 
-const compareSums = (firstFrom, firstTo, secondFrom, secondTo) =>
+
+// const compareSums = (firstFrom, firstTo, secondFrom, secondTo) =>
+//  getSumFromTo(firstFrom, firstTo) > getSumFromTo(secondFrom, secondTo);
+
+// console.log(compareSums(4, 5, 3, 2));
+
+const compareSums = (firstFrom, error, secondFrom, secondTo) =>
  getSumFromTo(firstFrom, firstTo) > getSumFromTo(secondFrom, secondTo);
 
 console.log(compareSums(4, 5, 3, 2));
