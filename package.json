@@ -18,11 +18,13 @@
     },
     "homepage": "https://github.com/VitaliiHryb/my-repo#readme",
     "dependencies": {
-        "eslint": "^8.17.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^4.0.0",
         "prettier": "^2.7.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.18.0"
     }
 }
