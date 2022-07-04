@@ -125,3 +125,19 @@ console.log(evenPositions);
 // const callbackFilter = numFilter => numFilter > 5;
 // (option3)
 // numFilter1.filter(el => el > 5);
+
+// resolver function
+function sum(from, to, resolver) {
+  let sumResult = 0;
+  for (let i = from; i < to; i += 1) {
+    sumResult += i;
+  }
+  resolver(sumResult);
+}
+
+function resolver(number) {
+  console.log(number);
+}
+
+// test data
+sum(10, 140, resolver);
