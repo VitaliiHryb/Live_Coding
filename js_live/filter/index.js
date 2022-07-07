@@ -52,6 +52,7 @@ const resFilter1 = filterArray(testArr1, testCallback);
 console.log(resFilter1);
 
 // --- multiply
+
 // input: number1, number2, ... numberN
 // output: prevdo array
 function multiplyOld() {
