@@ -22,7 +22,7 @@ function compareObjects(obj1, obj2) {
   return keys1.every(key => obj1[key] === obj2[key]);
 }
 
-// // option 2 (good too)
+// // option 2 (ok)
 // function compareObjects(obj1, obj2) {
 //   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
 //     return false;
@@ -36,7 +36,7 @@ function compareObjects(obj1, obj2) {
 //   return !Object.keys({ ...obj1, ...obj2 }).some(key => obj1[key] !== obj2[key]);
 // }
 
-// old solution
+// very old solution
 // function compareObjects(obj1, obj2) {
 //   const keys1 = Object.keys(obj1);
 //   const keys2 = Object.keys(obj2);
