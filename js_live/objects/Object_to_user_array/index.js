@@ -1,77 +1,59 @@
-// Compare 2 properties
-// input: two obj, obj
-// output: boolian
+// Объект в масив пользователей
+// input: object
+// output: array
 
-// algo
-// 1. get keys1, keys2
-// 2. if keys1.legth !== keys2.length
-// 3. iterate keys1
-// 4. compare keys1/keys2 & values1/values2
-// 5. if (step 4 === false) ==> false
+// Object.entries(obj)
+// input: obj
+// output: [{key1: value1} ... {keyN: valueN}]
+
+// Algo
+// Obj of objects ==> Array of arrays
+// ==> ['customers-id-1',{...}], ['customers-id-2',{...}], ['customers-id-3',{...}]
+// loop threw this to destructuring assignment
+// ==> [{id: 'customers-id-1', name: 'William', age: 54}, ... {...}]
+// sort array from old to young
 
 const getCustomersList = obj => {
-  // put your code here
+  return Object.entries(obj)
+    .map(([id, customer]) => ({ id, ...customer }))
+    .sort((a, b) => (a.age > b.age ? 1 : -1));
 };
 
-// my solution
-function compareObjects(obj1, obj2) {
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const values1 = Object.values(obj1);
-  const values2 = Object.values(obj2);
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-  for (let key of keys1) {
-    if (!keys2.includes(key)) {
-      return false;
-    }
-  }
-  for (let value of values1) {
-    if (!values2.includes(value)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-// old solution
-// function compareObjects(obj1, obj2) {
-//   const keys1 = Object.keys(obj1);
-//   const keys2 = Object.keys(obj2);
-//   if (keys1.length !== keys2.length) {
-//     return false;
-//   }
-//   for (let key of keys1) {
-//     if (obj1[key] !== obj2[key]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
-// examples
-const obj1 = {
-  name: 'Tom',
-  age: 17,
+const customers = {
+  'customers-id-1': {
+    name: 'William',
+    age: 54,
+  },
+  'customers-id-2': {
+    name: 'Tom',
+    age: 17,
+  },
+  'customers-id-3': {
+    name: 'Ann',
+    age: 16,
+  },
 };
 
-const obj2 = {
-  name: 'Bob',
-  age: 17,
-};
+console.log(getCustomersList(customers));
+console.log(customers);
 
-const obj3 = {
-  name: 'Bob',
-  age: 17,
-  student: false,
-};
-
-const obj4 = {
-  name: 'Tom',
-  age: 17,
-};
-
-console.log(compareObjects(obj1, obj2)); // ==> false
-console.log(compareObjects(obj2, obj3)); // ==> false
-console.log(compareObjects(obj1, obj4)); // ==> true
+// result
+/* =>
+[
+  {
+    name: 'Ann',
+    age: 16,
+    id: 'customers-id-3'
+  },
+  {
+    name: 'Tom',
+    age: 17,
+    id: 'customers-id-2'
+  },
+  {
+    name: 'William',
+    age: 54,
+    id: 'customers-id-1'
+  },
+]
+*/
