@@ -68,7 +68,7 @@ const timer = {
         this.minsPassed += 1;
         this.secondsPassed = 0;
       }
-      console.log(this.getTimer());
+      console.log(this.getTime());
     }, 1000);
   },
 
@@ -107,7 +107,7 @@ const timer = {
 };
 
 // test data
-timer.startTimer(); // context +
+timer.startTime(); // context +
 // timer.stopTimer();
 // timer.resetTimer();
 
