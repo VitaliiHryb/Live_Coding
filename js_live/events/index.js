@@ -48,18 +48,19 @@ const renderTasks = tasksList => {
     });
 
   listElem.textContent = '';
-  console.log(tasksElems);
   listElem.append(...tasksElems);
 };
 
 function addNewTask() {
   const taskInput = document.querySelector('.task-input');
 
-  if (taskInput.value.length > 0) {
-    tasks.push({ text: taskInput.value, done: false, id: `${tasks.length + 1}` });
-    taskInput.value = '';
-    renderTasks(tasks);
+  if (taskInput.value.length === 0) {
+    return;
   }
+
+  tasks.push({ text: taskInput.value, done: false, id: `${tasks.length + 1}` });
+  taskInput.value = '';
+  renderTasks(tasks);
 }
 
 const onToggleTask = e => {
@@ -70,17 +71,15 @@ const onToggleTask = e => {
   }
 
   const taskData = tasks.find(task => task.id === e.target.dataset.id);
-  Object.assign(taskData, { done: e.target.checked });
+  taskData.done = e.target.checked;
   renderTasks(tasks);
 };
 
 renderTasks(tasks);
 
 createButton.addEventListener('click', addNewTask);
-// listElem.addEventListener('click', completeTask);
 listElem.addEventListener('click', onToggleTask);
 
-// ==============
 // algo createNewTask
 // 0. read input
 // 1. create task obj
@@ -157,3 +156,69 @@ listElem.addEventListener('click', onToggleTask);
 
 //   renderTasks(tasks);
 // }
+// ======================================================
+
+// DRAFT SOLUTION
+// const tasks = [
+//   { text: 'Buy milk', done: false, id: '1' },
+//   { text: 'Pick up Tom from airport', done: false, id: '2' },
+//   { text: 'Visit party', done: false, id: '3' },
+//   { text: 'Visit doctor', done: true, id: '4' },
+//   { text: 'Buy meat', done: true, id: '5' },
+// ];
+
+// const listElem = document.querySelector('.list');
+
+// const renderTasks = tasksList => {
+//   listElem.innerHTML = '';
+//   const tasksElems = tasksList
+//     .sort((a, b) => a.done - b.done)
+//     .map(({ text, done }) => {
+//       const listItemElem = document.createElement('li');
+//       listItemElem.classList.add('list__item');
+//       const checkbox = document.createElement('input');
+//       checkbox.setAttribute('type', 'checkbox');
+//       checkbox.checked = done;
+//       if (done) {
+//         listItemElem.classList.add('list__item_done');
+//       }
+//       listItemElem.append(checkbox, text);
+
+//       return listItemElem;
+//     });
+
+//   listElem.append(...tasksElems);
+// };
+
+// const createButton = document.querySelector('.create-task-btn');
+
+// const addNewTask = () => {
+//   const newTask = document.querySelector('.task-input');
+//   const inputText = newTask.value;
+//   const newTaskId = tasks.length + 1;
+//   const stringToObj = `{ "text": "${inputText}", "done": false, "id": "${newTaskId}" }`;
+//   const newObj = JSON.parse(stringToObj);
+//   console.log(newObj); // => error
+//   tasks.push(newObj);
+
+//   renderTasks(tasks);
+// };
+
+// createButton.addEventListener('click', addNewTask);
+
+// const ontoggle = e => {
+//   const isCheckbox = e.target;
+//   if (isCheckbox.type === 'checkbox') {
+//     if (isCheckbox.checked) {
+//       isCheckbox.parentElement.classList.add('list__item_done');
+//     } else {
+//       isCheckbox.parentElement.classList.remove('list__item_done');
+//     }
+//   }
+// };
+
+// listElem.addEventListener('click', ontoggle);
+
+// renderTasks(tasks);
+
+// ======================================================
