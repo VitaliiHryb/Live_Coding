@@ -11,7 +11,7 @@
 
 // 1. get data
 // 2. render
-// 3. update data, don't update DOM (!!!!)
+// 3. update data (don't update DOM)
 // 4. re-render
 
 const tasks = [
@@ -61,20 +61,6 @@ function addNewTask() {
     renderTasks(tasks);
   }
 }
-
-// function completeTask(event) {
-//   const isCheckbox = event.target.classList.contains('list__item-checkbox');
-
-//   if (!isCheckbox) {
-//     return;
-//   }
-//   const checkboxId = event.target.dataset.id;
-
-//   const seekedTask = tasks.find(el => checkboxId === el.id);
-//   seekedTask.done = event.target.checked;
-
-//   renderTasks(tasks);
-// }
 
 const onToggleTask = e => {
   const isCheckbox = e.target.classList.contains('list__item-checkbox');
@@ -156,3 +142,18 @@ listElem.addEventListener('click', onToggleTask);
 // listElem.addEventListener('click', onToggleTask);
 
 // when we add something - delet etc.
+
+// ================================
+// function completeTask(event) {
+//   const isCheckbox = event.target.classList.contains('list__item-checkbox');
+
+//   if (!isCheckbox) {
+//     return;
+//   }
+//   const checkboxId = event.target.dataset.id;
+
+//   const seekedTask = tasks.find(el => checkboxId === el.id);
+//   seekedTask.done = event.target.checked;
+
+//   renderTasks(tasks);
+// }
