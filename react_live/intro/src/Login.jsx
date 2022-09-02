@@ -4,10 +4,9 @@ import React from 'react';
 // output: jsx
 
 // click handler (function)
-const Login = props => {
-  // console.log(props);
+const Login = ({ onLogin }) => {
   return (
-    <button className="login btn" onClick={props.onLogin}>
+    <button className="login btn" onClick={onLogin}>
       Login
     </button>
   );

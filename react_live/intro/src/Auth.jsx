@@ -15,20 +15,27 @@ import Spinner from './Spinner';
 // 3. hide Spinner, show Logout ++
 // 4. after Logout click - show Login ++
 
-// no props
+// BAD ==> GOOD
 class Auth extends React.Component {
-  // isLogin: false
-  // isSpinner: false
   state = {
     isLoggedIn: false,
     isSpinner: false,
   };
 
+  // input: obj
+  // output: undefined
+
   login = () => {
     this.setState({
-      isLoggedIn: true,
+      isSpinner: true,
     });
-    this.showSpinner();
+
+    setTimeout(() => {
+      this.setState({
+        isSpinner: false,
+        isLoggedIn: true,
+      });
+    }, 2000);
   };
 
   logout = () => {
@@ -37,29 +44,18 @@ class Auth extends React.Component {
     });
   };
 
-  showSpinner = () => {
-    this.setState({
-      isSpinner: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        isSpinner: false,
-      });
-    }, 2000);
-  };
-
-  // const loginHandler = () => {
-  //   console.log('loginHandler is called');
-  // };
-
   render() {
-    let button = this.state.isLoggedIn ? (
-      <Logout onLogin={this.logout} />
-    ) : (
-      <Login onLogin={this.login} />
-    );
+    const { isLoggedIn, isSpinner } = this.state;
 
-    return <div className="main">{this.state.isSpinner ? <Spinner size={50} /> : button}</div>;
+    if (isSpinner) {
+      return <Spinner size={50} />;
+    }
+
+    if (isLoggedIn) {
+      return <Logout onLogout={this.logout} />;
+    }
+
+    return <Login onLogin={this.login} />;
   }
 }
 
