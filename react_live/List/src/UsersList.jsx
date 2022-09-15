@@ -2,6 +2,112 @@ import React from 'react';
 import Pagination from './Pagination';
 import User from './User';
 
+// refactoring
+class UsersList extends React.Component {
+  state = {
+    currentPage: 0,
+    itemsPerPage: 3,
+  };
+
+  goPrev = () => {
+    this.setState({
+      currentPage: this.state.currentPage - 1,
+    });
+  };
+
+  goNext = () => {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+  };
+
+  render() {
+    const { currentPage, itemsPerPage } = this.state;
+    const users = this.props.users;
+    let startIndex = currentPage * itemsPerPage;
+
+    return (
+      <div>
+        <Pagination
+          totalItems={users.length}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage + 1}
+          goPrev={this.goPrev}
+          goNext={this.goNext}
+        />
+        <ul className="users">
+          {users.slice(startIndex, itemsPerPage + startIndex).map(({ id, ...user }) => (
+            <User key={id} {...user} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+// LC
+// state:
+// currentPage: 0,
+// itemsPerPage: 3,
+
+// props ==> Pagination
+// prevHandler
+// nextHandler
+// curPage
+// usersCount
+// usersPerPage
+
+// JENYA
+// class UsersList extends React.Component {
+//   state = {
+//     currentPage: 1,
+//     itemsPerPage: 3,
+//   };
+
+//   // ця функція не потрібна
+//   // sliceUserList = () => {
+//   //   const { currentPage, itemsPerPage } = this.state;
+//   //   const indexTo = currentPage * itemsPerPage;
+//   //   const indexFrom = indexTo - itemsPerPage;
+//   //   const { users } = this.props.users;
+//   //   return users.slice(indexFrom, indexTo);
+//   // };
+
+//   handlerPrevPage = () => {
+//     this.setState({ currentPage: this.state.currentPage - 1 });
+//   };
+
+//   handlerNextPage = () => {
+//     this.setState({ currentPage: this.state.currentPage + 1 });
+//   };
+
+//   render() {
+//     const { currentPage, itemsPerPage } = this.state;
+//     const indexTo = currentPage * itemsPerPage;
+//     const { users } = this.props;
+//     const usersList = users.slice(indexTo - itemsPerPage, indexTo);
+
+//     return (
+//       <div>
+//         <Pagination
+//           currentPage={this.state.currentPage}
+//           goPrev={this.handlerPrevPage}
+//           goNext={this.handlerNextPage}
+//           totalItems={users.length}
+//           itemsPerPage={this.state.itemsPerPage}
+//         />
+//         <ul className="users">
+//           {usersList.map(({ name, age, id }) => (
+//             <User name={name} age={age} key={id} />
+//           ))}
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
+
+// MY OLD SOLUTION
+/*
 class UsersList extends React.Component {
   state = {
     currentPage: 0,
@@ -45,6 +151,7 @@ class UsersList extends React.Component {
     );
   }
 }
+*/
 
 export default UsersList;
 
