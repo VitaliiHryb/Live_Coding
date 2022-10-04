@@ -1,20 +1,63 @@
-function markAdmins(usersList, adminIds) {
-  return usersList.map(userData => {
-    return { ...userData, isAdmin: adminIds.includes(userData.id) };
-  });
+class User {
+  constructor(firstName, group, grade) {
+    this.firstName = firstName;
+    this.group = group;
+    this.grade = grade;
+  }
 }
+//
+const instance = new User('this', 'is', 'test');
+console.log(instance);
+// // context
+// function someFunc(points) {
+//   console.log(`Hello, ${this.name}, you have ${points} points`);
+// }
 
-// examples
-const adminIds = ['1', '3'];
-const users = [
-  { id: '1', name: 'Bob' },
-  { id: '2', name: 'Tom' },
-  { id: '3', name: 'Sam' },
-  { id: '4', name: 'Tad' },
-];
+// someFunc(10);
+
+// //
+// const newFunction = someFunc.bind({ name: 'vitalii' }, 10);
+// console.log(newFunction());
+// newFunction(25);
+
+// console.log(arr);
+
+// const user = { id: 205, adress: { ip: '121.0.0.1' } };
+// const { id, adress } = user;
+// const { ip } = adress;
+
+// // чи існує нєкій ключ в обєкті
+// console.log('id' in user);
+// console.log(user.hasOwnProperty('adress'));
+// console.log(Object.keys(user).includes('id'));
+
+// // Andrii Mudrevskyi dont like this but I like
+// console.log(user.id !== undefined);
+
+// // cool
+// console.log(user?.id);
+
+// console.log((() => {}) === (() => {}));
+
+// console.log((() => {})());
+
+// function markAdmins(usersList, adminIds) {
+//   return usersList.map(userData => {
+//     return { ...userData, isAdmin: adminIds.includes(userData.id) };
+//   });
+// }
+
+// // examples
+// const adminIds = ['1', '3'];
+// const users = [
+//   { id: '1', name: 'Bob' },
+//   { id: '2', name: 'Tom' },
+//   { id: '3', name: 'Sam' },
+//   { id: '4', name: 'Tad' },
+// ];
 
 // console.log(markAdmins(users, adminIds));
-markAdmins(users, adminIds);
+// markAdmins(users, adminIds);
 
 // Algo:
 // 1. Iterate array
