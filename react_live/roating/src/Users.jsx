@@ -43,6 +43,9 @@ function Users(props) {
         </ul>
 
         <Switch>
+          <Route exact path="/users">
+            <span>Select a product please</span>
+          </Route>
           <Route exact path="/" component={Home}></Route>
           <Route path="/users/:userId" component={User}></Route>
         </Switch>
