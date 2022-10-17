@@ -44,7 +44,7 @@ function Users(props) {
 
         <Switch>
           <Route exact path="/users">
-            <span>Select a product please</span>
+            <span>Select a user please</span>
           </Route>
           <Route exact path="/" component={Home}></Route>
           <Route path="/users/:userId" component={User}></Route>
